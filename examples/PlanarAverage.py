@@ -1,12 +1,24 @@
 #! /usr/bin/env python
-import macrodensity as md
 import math
 import numpy as np
 import matplotlib.pyplot as plt
+import sys
+sys.path.append('../')
+import macrodensity as md
+# import argparse
 
-input_file = 'LOCPOT'
-lattice_vector = 4.75
-output_file = 'planar.dat'
+# parser = argparse.ArgumentParser()
+# # Input argument
+# parser.add_argument('--input_file', default=f'{homedir}/task1/models/two_stream/test/test1.mp4', help='Input file to predict')
+# parser.add_argument('--checkpoint_path', default=f'{settings1.checkpoints}/two_stream/AC_CE_EF_FG/_ckpt_epoch_34.ckpt')
+# #parser.add_argument('--checkpoint_path', default=f'{settings1.checkpoints}/two_stream/AC_CE_EF_FG/_ckpt_epoch_46.ckpt', help='path to load checkpoints')
+# parser.add_argument('--hparams_path', default=f'{homedir}/task1/models/two_stream/lightning_logs/AC_CE_EF_FG/alexnet_False_convLSTM/version_1/hparams.yaml', help='path to load hyperparameters')
+# args = parser.parse_args()
+
+job_identifier = "minimization1"
+input_file = f'../../thesis/Slab/Doped/HER_H20/hydrogen_binding/0001/{job_identifier}/LOCPOT'
+lattice_vector = 29.966237
+output_file = f'../results/{job_identifier}_planar.dat'
 # No need to alter anything after here
 #------------------------------------------------------------------
 # Get the potential
@@ -27,5 +39,6 @@ plt.plot(planar)
 plt.plot(macro)
 plt.savefig('Planar.eps')
 plt.show()
+plt.savefig(f"../results/{job_identifier}.jpg")
 np.savetxt(output_file,planar)
 ##------------------------------------------------------------------
